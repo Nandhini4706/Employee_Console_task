@@ -46,8 +46,8 @@ public class Main {
                      System.out.println("Enter Emp_status ");
                      String status = sc.nextLine();
                      System.out.println("Enter experience ");
-
                      String exp = sc.nextLine();
+
                      Employee emp=new Employee(name,email,mobileNo,city,state,date,dept,project,status,exp);
                      service.addEmployee(emp);
                      break;
@@ -162,8 +162,8 @@ public class Main {
                  case 5:
                      System.out.println("Enter Employee ID to Delete: ");
                      int deleteId = sc.nextInt();
-
-                     String deleteQuery = "DELETE FROM employees WHERE empId=?";
+                     service.deleteEmployee(deleteId);
+                    /* String deleteQuery = "DELETE FROM employees WHERE empId=?";
 
                      PreparedStatement ps6 = con.prepareStatement(deleteQuery);
                      ps6.setInt(1, deleteId);
@@ -175,7 +175,7 @@ public class Main {
                      } else {
                          System.out.println("Employee ID not found");
                      }
-
+                     */
                      break;
                  case 6:
                      System.out.println("Are You Sure want to Exit");
