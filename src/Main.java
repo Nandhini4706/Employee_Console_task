@@ -127,6 +127,7 @@ public class Main {
                           }
                       }
                       break;
+
                  case 3:
                      service.viewEmployee();
                      break;
@@ -134,36 +135,15 @@ public class Main {
                  case 4:
                      System.out.println("Enter Employee ID to View: ");
                      int viewId = sc.nextInt();
-
-                     String viewQuery = "SELECT * FROM employees WHERE empId=?";
-
-                     PreparedStatement ps5 = con.prepareStatement(viewQuery);
-                     ps5.setInt(1, viewId);
-
-                     ResultSet rs5 = ps5.executeQuery();
-
-                     if (rs5.next()) {
-                         System.out.println("ID: " + rs5.getInt("empId"));
-                         System.out.println("Name: " + rs5.getString("empName"));
-                         System.out.println("Email: " + rs5.getString("emailId"));
-                         System.out.println("Mobile No: " + rs5.getString("mobileNo"));
-                         System.out.println("City: " + rs5.getString("city"));
-                         System.out.println("State: " + rs5.getString("state"));
-                         System.out.println("Date of Join: " + rs5.getString("date_of_join"));
-                         System.out.println("Dept ID: " + rs5.getInt("deptID"));
-                         System.out.println("Project ID: " + rs5.getInt("projectId"));
-                         System.out.println("Status: " + rs5.getString("emp_status"));
-                         System.out.println("Experience: " + rs5.getString("experience"));
-                     } else {
-                         System.out.println("Employee ID not found");
-                     }
-
+                     service.viewByEmp(viewId);
                      break;
+
                  case 5:
                      System.out.println("Enter Employee ID to Delete: ");
                      int deleteId = sc.nextInt();
                      service.deleteEmployee(deleteId);
                      break;
+
                  case 6:
                      System.out.println("Are You Sure want to Exit");
                      String s = sc.nextLine();
