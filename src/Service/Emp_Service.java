@@ -61,27 +61,13 @@ public class Emp_Service {
     }
 
     public void deleteEmployee(int deleteId) throws Exception{
-        String query="DELETE FROM employees WHERE id=?";
+        String query="DELETE FROM employees WHERE empId=?";
         PreparedStatement ps=con.prepareStatement(query);
         ps.setInt(1,deleteId);
-        ResultSet rs=ps.executeQuery();
-        boolean found =false;
-        while(rs.next()){
-            found=true;
-            System.out.println("Id : " +rs.getInt("empId"));
-            System.out.println("Name : " +rs.getString("empName"));
-            System.out.println("EmailId : " +rs.getString("emailId"));
-            System.out.println("Mobile No : " +rs.getString("mobileNo"));
-            System.out.println("City : " +rs.getString("city"));
-            System.out.println("State : " +rs.getString("state"));
-            System.out.println("Date Of Join : " +rs.getString("date_of_join"));
-            System.out.println("Department Id : " +rs.getInt("deptId"));
-            System.out.println("Project Id : " +rs.getInt("projectId"));
-            System.out.println("Status : " +rs.getString("emp_status"));
-            System.out.println("Experience : " +rs.getString("experience"));
-            System.out.println("-------------------------------------------------------");
-        }
-        if(!found){
+        int rs=ps.executeUpdate();
+        if(rs>0){
+            System.out.println("Employee Deleted Successfully");
+        }else{
             System.out.println("Employee Not Found");
         }
     }

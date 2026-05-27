@@ -163,19 +163,6 @@ public class Main {
                      System.out.println("Enter Employee ID to Delete: ");
                      int deleteId = sc.nextInt();
                      service.deleteEmployee(deleteId);
-                    /* String deleteQuery = "DELETE FROM employees WHERE empId=?";
-
-                     PreparedStatement ps6 = con.prepareStatement(deleteQuery);
-                     ps6.setInt(1, deleteId);
-
-                     int row5 = ps6.executeUpdate();
-
-                     if (row5 > 0) {
-                         System.out.println("Employee Deleted Successfully");
-                     } else {
-                         System.out.println("Employee ID not found");
-                     }
-                     */
                      break;
                  case 6:
                      System.out.println("Are You Sure want to Exit");
