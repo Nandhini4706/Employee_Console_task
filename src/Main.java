@@ -46,6 +46,7 @@ public class Main {
                      System.out.println("Enter Emp_status ");
                      String status = sc.nextLine();
                      System.out.println("Enter experience ");
+
                      String exp = sc.nextLine();
                      Employee emp=new Employee(name,email,mobileNo,city,state,date,dept,project,status,exp);
                      service.addEmployee(emp);
@@ -127,34 +128,7 @@ public class Main {
                       }
                       break;
                  case 3:
-                     String selectQuery = "SELECT * FROM employees";
-                     PreparedStatement ps2 = con.prepareStatement(selectQuery);
-
-                     ResultSet rs = ps2.executeQuery();
-
-                     boolean found = false;
-
-                     while (rs.next()) {
-                         found = true;
-
-                         System.out.println("ID: " + rs.getInt("empId"));
-                         System.out.println("Name: " + rs.getString("empName"));
-                         System.out.println("Email: " + rs.getString("emailId"));
-                         System.out.println("Mobile No: " + rs.getString("mobileNo"));
-                         System.out.println("City: " + rs.getString("city"));
-                         System.out.println("State: " + rs.getString("state"));
-                         System.out.println("Date of Join: " + rs.getString("date_of_join"));
-                         System.out.println("Dept ID: " + rs.getInt("deptID"));
-                         System.out.println("Project ID: " + rs.getInt("projectId"));
-                         System.out.println("Status: " + rs.getString("emp_status"));
-                         System.out.println("Experience: " + rs.getString("experience"));
-                         System.out.println("----------------------------------");
-                     }
-
-                     if (!found) {
-                         System.out.println("Employee not found");
-                     }
-
+                     service.viewEmployee();
                      break;
 
                  case 4:

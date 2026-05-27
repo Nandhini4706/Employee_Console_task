@@ -35,23 +35,32 @@ public class Emp_Service {
         ps.close();
     }
 
-    public void viewEmployee(Employee emp) throws  Exception{
-        String query="Select * from employee";
+    public void viewEmployee() throws  Exception{
+        String query="Select * from employees";
         PreparedStatement ps= con.prepareStatement(query);
         ResultSet rs=ps.executeQuery();
+        boolean boo=false;
         while(rs.next()){
+            boo=true;
             System.out.println("Id : " +rs.getInt("empId"));
-            System.out.println("Name : " +rs.getInt("empName"));
-            System.out.println("EmailId : " +rs.getInt("emailId"));
-            System.out.println("Mobile No : " +rs.getInt("mobileNo"));
-            System.out.println("City : " +rs.getInt("city"));
-            System.out.println("State : " +rs.getInt("state"));
-            System.out.println("Date Of Join : " +rs.getInt("date_of_join"));
+            System.out.println("Name : " +rs.getString("empName"));
+            System.out.println("EmailId : " +rs.getString("emailId"));
+            System.out.println("Mobile No : " +rs.getString("mobileNo"));
+            System.out.println("City : " +rs.getString("city"));
+            System.out.println("State : " +rs.getString("state"));
+            System.out.println("Date Of Join : " +rs.getString("date_of_join"));
             System.out.println("Department Id : " +rs.getInt("deptId"));
             System.out.println("Project Id : " +rs.getInt("projectId"));
-            System.out.println("Status : " +rs.getInt("emp_status"));
-            System.out.println("Experience : " +rs.getInt("experience"));
+            System.out.println("Status : " +rs.getString("emp_status"));
+            System.out.println("Experience : " +rs.getString("experience"));
             System.out.println("-------------------------------------------------------");
         }
+        if(!boo){
+            System.out.println("Employee Not found ");
+        }
+    }
+
+    public void deleteEmployee(Employee emp) throws Exception{
+
     }
 }
