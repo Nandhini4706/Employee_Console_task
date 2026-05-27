@@ -1,19 +1,15 @@
 import java.sql.*;
 import java.util.*;
+
+import Model.Employee;
+import Service.Emp_Service;
 import db.Con_db;
 import static java.lang.Class.forName;
 public class Main {
-  public static void main(String[] args){
+  public static void main(String[] args) throws Exception {
       Scanner sc=new Scanner(System.in);
-//Connection con=Con_db.getConnnection();
-     try {
-         Class.forName("com.mysql.cj.jdbc.Driver");
-
-         Connection con = DriverManager.getConnection(
-                 "jdbc:mysql://localhost:3306/employee",
-                 "root",
-                 "Nandhu07"
-         );
+ Connection con=Con_db.getConnnection();
+      Emp_Service service=new Emp_Service(con);
 
          while (true) {
              System.out.println("------------------------------------------");
@@ -51,26 +47,8 @@ public class Main {
                      String status = sc.nextLine();
                      System.out.println("Enter experience ");
                      String exp = sc.nextLine();
-
-                     String insertQuery = "INSERT INTO employees(empName, emailId, mobileNo, city, state, date_of_join, deptID, projectId, emp_status, experience) VALUES(?,?,?,?,?,?,?,?,?,?)";
-                     PreparedStatement ps = con.prepareStatement(insertQuery);
-                     ps.setString(1, name);
-                     ps.setString(2, email);
-                     ps.setString(3, mobileNo);
-                     ps.setString(4, city);
-                     ps.setString(5, state);
-                     ps.setString(6, date);
-                     ps.setInt(7, dept);
-                     ps.setInt(8, project);
-                     ps.setString(9, status);
-                     ps.setString(10, exp);
-
-                     int row = ps.executeUpdate();
-                     if(row > 0) {
-                         System.out.println("Employee Added Successfully");
-                     }else{
-                         System.out.println("Employee not added");
-                     }
+                     Employee emp=new Employee(name,email,mobileNo,city,state,date,dept,project,status,exp);
+                     service.addEmployee(emp);
                      break;
                  case 2:
                   /*   System.out.println("Enter Employee ID to Update: ");
@@ -147,8 +125,7 @@ public class Main {
                               System.out.println("Employee ID not found");
                           }
                       }
-
-   break;
+                      break;
                  case 3:
                      String selectQuery = "SELECT * FROM employees";
                      PreparedStatement ps2 = con.prepareStatement(selectQuery);
@@ -236,10 +213,5 @@ public class Main {
                      }
              }
          }
-
-
-     }catch(Exception e){
-         System.out.println(e);
-     }
   }
 }
